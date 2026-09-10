@@ -1,5 +1,5 @@
-const CACHE='lavanderia-wd10m-v1.2';
-const ASSETS=['./','./index.html','./style.css','./style.css?v=1.2','./app.js','./app.js?v=1.2','./manifest.webmanifest','./icon.svg'];
+const CACHE='lavanderia-wd10m-v1.3';
+const ASSETS=['./','./index.html','./style.css','./style.css?v=1.3','./app.js','./app.js?v=1.3','./social.js','./social.js?v=1.3','./manifest.webmanifest','./icon.svg'];
 
 self.addEventListener('install',event=>{
   self.skipWaiting();
