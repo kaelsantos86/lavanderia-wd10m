@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lavanderia">
+  <title>Lavanderia WD10M</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="shell">
+    <div class="eyebrow">Samsung WD10M4453MW</div>
+    <h1>Lavanderia</h1>
+    <p>Seu assistente rápido para escolher ciclo, temperatura, centrifugação, secagem e produtos.</p>
+  </div>
+</header>
+
+<nav class="tabs shell" aria-label="Navegação principal">
+  <button class="tab active" data-tab="assistente">Assistente</button>
+  <button class="tab" data-tab="manchas">Manchas</button>
+  <button class="tab" data-tab="produtos">Produtos</button>
+  <button class="tab" data-tab="maquina">Máquina</button>
+  <button class="tab" data-tab="seguranca">Segurança</button>
+</nav>
+
+<main class="shell">
+<section id="assistente" class="panel active-panel">
+  <article class="card">
+    <h2>O que você vai lavar?</h2>
+    <p class="muted">Responda às opções abaixo. O guia monta o processo completo para a sua WD10M.</p>
+    <div class="form-grid">
+      <label>Tipo de roupa
+        <select id="tipo">
+          <option value="dia">Dia a dia / algodão</option>
+          <option value="pretas">Pretas e escuras</option>
+          <option value="brancas">Brancas</option>
+          <option value="toalhas">Toalhas</option>
+          <option value="cama">Lençóis / roupa de cama</option>
+          <option value="esporte">Academia / dry fit</option>
+          <option value="intimas">Roupas íntimas</option>
+          <option value="jeans">Jeans</option>
+          <option value="la">Lã / delicadas laváveis em máquina</option>
+          <option value="rapida">Poucas peças, estou com pressa</option>
+          <option value="odor">Só odor, sem sujeira aparente</option>
+        </select>
+      </label>
+      <label>Nível de sujeira
+        <select id="sujeira">
+          <option value="leve">Leve</option>
+          <option value="normal" selected>Normal</option>
+          <option value="pesada">Pesada / com manchas</option>
+        </select>
+      </label>
+      <label>Quero sair com a roupa seca
+        <select id="secar">
+          <option value="nao">Não</option>
+          <option value="sim">Sim</option>
+        </select>
+      </label>
+    </div>
+    <button id="montar" class="primary">Montar meu processo</button>
+  </article>
+
+  <article id="resultado" class="card hidden" aria-live="polite">
+    <div class="result-head">
+      <div><div class="eyebrow dark">RECOMENDAÇÃO</div><h2 id="rTitulo"></h2></div>
+      <span id="rStatus" class="badge"></span>
+    </div>
+    <div class="metrics">
+      <div><span>Ciclo</span><strong id="rCiclo"></strong></div>
+      <div><span>Temperatura</span><strong id="rTemp"></strong></div>
+      <div><span>Centrifugação</span><strong id="rSpin"></strong></div>
+      <div><span>Secagem</span><strong id="rSecagem"></strong></div>
+    </div>
+    <h3>Produtos</h3>
+    <div id="rProdutos" class="chips"></div>
+    <div class="drawer">
+      <div><b>II</b><span>Lavagem principal</span></div>
+      <div><b>✿</b><span>Amaciante, se indicado</span></div>
+      <div><b>I</b><span>Pré-lavagem, só se ativada</span></div>
+    </div>
+    <h3>Passo a passo</h3>
+    <ol id="rPassos" class="steps"></ol>
+    <div id="rAviso"></div>
+  </article>
+
+  <article class="card">
+    <h3>Atalhos úteis</h3>
+    <div class="shortcut-grid">
+      <button class="shortcut" data-quick="59"><b>59' Lavar + Secar</b><span>Para pouquíssimas peças leves.</span></button>
+      <button class="shortcut" data-quick="15"><b>Rápido 15'</b><span>Pequena carga e sujeira leve.</span></button>
+      <button class="shortcut" data-quick="air"><b>Air Wash</b><span>Refresca com ar quente, sem sabão.</span></button>
+      <button class="shortcut" data-quick="tambor"><b>Tambor Eco</b><span>Limpeza interna com máquina vazia.</span></button>
+    </div>
+    <div id="quickBox"></div>
+  </article>
+</section>
+
+<section id="manchas" class="panel">
+  <article class="card">
+    <h2>Socorro: mancha</h2>
+    <p class="muted">Escolha o tipo. A regra principal é simples: não use secagem térmica antes de confirmar que a mancha saiu.</p>
+    <label>Tipo de mancha
+      <select id="tipoMancha">
+        <option value="gordura">Gordura / óleo / molho oleoso</option>
+        <option value="sangue">Sangue</option>
+        <option value="suor">Suor / desodorante</option>
+        <option value="bebida">Café / chá / vinho</option>
+        <option value="maquiagem">Maquiagem</option>
+        <option value="lama">Lama / terra / grama</option>
+        <option value="desconhecida">Não sei o que é</option>
+      </select>
+    </label>
+    <button id="tratar" class="primary">Mostrar tratamento</button>
+  </article>
+  <article id="resultadoMancha" class="card hidden"></article>
+</section>
+
+<section id="produtos" class="panel">
+  <article class="card">
+    <h2>Lista de compras</h2>
+    <p class="muted">Uma cesta enxuta. Marque o que já tem; a seleção fica salva neste aparelho.</p>
+    <div id="compras"></div>
+  </article>
+  <article class="card">
+    <h3>Como usar cada categoria</h3>
+    <details open><summary>Sabão principal</summary><p>Prefira lava-roupas líquido de baixa espuma indicado para máquina automática/front load. Neste guia, Ariel Concentrado Expert é a referência-base. A dose final deve seguir o rótulo do frasco, tamanho da carga e sujeira.</p></details>
+    <details><summary>Roupas pretas</summary><p>Um produto específico como Woolite Roupas Pretas e Escuras pode ajudar a preservar aparência e cor. Para jeans e peças escuras, água fria ou 30 °C costuma ser a escolha conservadora quando a etiqueta permite.</p></details>
+    <details><summary>Oxigênio ativo / Vanish</summary><p>Use a versão compatível com a cor e o tecido, sempre seguindo o rótulo atualizado. Não use em lã ou seda quando o fabricante contraindicar. Faça teste de firmeza da cor em área escondida.</p></details>
+    <details><summary>Amaciante</summary><p>É opcional. Use abaixo da marca MAX no compartimento ✿. Evite como rotina em toalhas, microfibra e roupas esportivas técnicas, porque pode reduzir absorção e desempenho do tecido.</p></details>
+    <details><summary>Perfume em cristais</summary><p>É perfume, não produto de limpeza. Comfort Boom pode ser usado conforme o rótulo; em lavadoras frontais, o fabricante orienta colocar os cristais diretamente no tambor. Use pouco.</p></details>
+    <details><summary>Vinagre branco</summary><p>Neste guia ele fica restrito a pré-tratamento/molho externo. Há especialistas domésticos que o usam no compartimento de amaciante, mas fabricantes de lavadoras alertam para possível dano cumulativo a vedações e mangueiras com uso ácido frequente.</p></details>
+    <details><summary>Bicarbonato</summary><p>É auxiliar, não substitui sabão. Evite misturar com vinagre esperando potencialização: ácido e base se neutralizam em grande parte. Aqui ele é reservado a usos externos e pontuais.</p></details>
+    <details><summary>Percarbonato</summary><p>É fonte de oxigênio ativo. Para reduzir risco com produtos de origem incerta, o guia prioriza tira-manchas/alvejantes sem cloro formulados, regularizados e com instruções claras de uso.</p></details>
+    <details><summary>Detergente de louça</summary><p>Pode ajudar em pré-tratamento localizado de gordura, em quantidade mínima e com enxágue antes da lavagem. Nunca coloque detergente de louça na gaveta ou no tambor: espuma demais.</p></details>
+  </article>
+</section>
+
+<section id="maquina" class="panel">
+  <article class="card">
+    <div class="eyebrow dark">SEU MODELO</div>
+    <h2>Samsung WD10M4453MW</h2>
+    <div class="chips"><span>10,1 kg lavagem</span><span>6 kg secagem</span><span>até 1.400 rpm</span><span>EcoBubble</span></div>
+    <p>A capacidade de secagem é menor que a de lavagem. Uma carga grande que pode ser lavada de uma vez pode precisar ser dividida antes da secagem.</p>
+  </article>
+  <article class="card program-list">
+    <h3>Programas</h3>
+    <details open><summary>Algodão</summary><p>Ciclo coringa para algodão, camisetas, toalhas e roupa de cama, respeitando a etiqueta.</p></details>
+    <details><summary>Sintéticos</summary><p>Para poliéster, nylon, dry fit e fibras sintéticas. Prefira temperatura e centrifugação moderadas.</p></details>
+    <details><summary>Lã</summary><p>Para peças cuja etiqueta autorize lavagem em máquina. Use carga pequena e detergente apropriado.</p></details>
+    <details><summary>Vapor Higiênico</summary><p>Quando o objetivo é higiene mais intensa e o tecido tolera o ciclo/temperatura.</p></details>
+    <details><summary>Lavagem Diária</summary><p>Boa para pequenas cargas de roupa de uso cotidiano.</p></details>
+    <details><summary>Rápido 15'</summary><p>Para poucas peças e sujeira leve. Não substitui um ciclo normal para manchas ou suor intenso.</p></details>
+    <details><summary>59' Lavar + Secar</summary><p>Combina lavagem e secagem para carga muito pequena, cerca de 1 kg de peças leves.</p></details>
+    <details><summary>Lavagem a Seco / Air Wash</summary><p>Usa ar aquecido, sem água e sem sabão, para refrescar e reduzir odores. Não remove sujeira e manchas.</p></details>
+    <details><summary>Secar Algodão / Secar Sintéticos</summary><p>Escolha conforme o tecido e somente quando a etiqueta permitir secadora.</p></details>
+    <details><summary>Enxaguar + Centrifugar</summary><p>Para enxágue adicional ou após lavagem manual.</p></details>
+    <details><summary>Lavagem do Tambor Eco</summary><p>Execute com o tambor totalmente vazio e sem adicionar sabão, vinagre, bicarbonato ou alvejante.</p></details>
+  </article>
+</section>
+
+<section id="seguranca" class="panel">
+  <article class="card">
+    <h2>Regras que evitam problemas</h2>
+    <div class="alert danger"><b>Nunca misture vinagre com água sanitária/cloro.</b> A mistura pode liberar gás tóxico.</div>
+    <div class="alert warning"><b>Não misture vinagre e bicarbonato em recipiente fechado.</b> Há liberação de gás e aumento de pressão.</div>
+    <p>Confira a etiqueta antes de escolher temperatura, centrifugação e secagem. Se a etiqueta proíbe secadora, nenhum ciclo de secagem da WD10M deve ser usado.</p>
+    <p>Não sobrecarregue. Na secagem, respeite 6 kg e prefira uma carga mais folgada para resultado uniforme.</p>
+    <p>Depois de usar, retire as roupas, limpe excesso de umidade da borracha e deixe porta e gaveta entreabertas para ventilação.</p>
+  </article>
+  <article class="card">
+    <h3>Base técnica</h3>
+    <p class="muted">Conteúdo construído a partir do manual e suporte da Samsung para a WD10M4453MW, orientações de fabricantes de produtos de lavanderia e referências de segurança doméstica. Em qualquer conflito, prevalecem o manual Samsung, a etiqueta da peça e o rótulo atual do produto.</p>
+  </article>
+</section>
+</main>
+
+<footer class="shell">Versão 1.0 • guia doméstico de apoio • atualizado em setembro de 2026</footer>
+<script src="app.js"></script>
+</body>
+</html>
