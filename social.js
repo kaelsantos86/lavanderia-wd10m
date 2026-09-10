@@ -193,5 +193,4 @@ if(cardsProdutos.length>1 && !document.querySelector('#guia-colarinho-produtos')
     </details>`);
 }
 
-const footer=document.querySelector('footer');
-if(footer) footer.textContent='Versão 1.3 • guia doméstico de apoio • atualizado em setembro de 2026';
+// A versão exibida é controlada pelo index.html. Este módulo não deve sobrescrevê-la.
