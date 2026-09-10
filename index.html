@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#0f172a">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Lavanderia">
   <title>Lavanderia WD10M</title>
   <link rel="manifest" href="manifest.webmanifest">
@@ -33,7 +33,7 @@
 <section id="assistente" class="panel active-panel">
   <article class="card">
     <h2>O que você vai lavar?</h2>
-    <p class="muted">Responda às opções abaixo. O guia monta o processo completo para a sua WD10M.</p>
+    <p class="muted">Escolha primeiro a roupa. Quantidade, sujeira, pressa e secagem são decisões separadas — assim o guia consegue adaptar o processo à situação real.</p>
     <div class="form-grid">
       <label>Tipo de roupa
         <select id="tipo">
@@ -46,8 +46,14 @@
           <option value="intimas">Roupas íntimas</option>
           <option value="jeans">Jeans</option>
           <option value="la">Lã / delicadas laváveis em máquina</option>
-          <option value="rapida">Poucas peças, estou com pressa</option>
           <option value="odor">Só odor, sem sujeira aparente</option>
+        </select>
+      </label>
+      <label>Quantidade de roupa
+        <select id="quantidade">
+          <option value="poucas">Poucas peças / carga pequena</option>
+          <option value="media" selected>Carga média</option>
+          <option value="grande">Carga grande</option>
         </select>
       </label>
       <label>Nível de sujeira
@@ -55,6 +61,12 @@
           <option value="leve">Leve</option>
           <option value="normal" selected>Normal</option>
           <option value="pesada">Pesada / com manchas</option>
+        </select>
+      </label>
+      <label>Prioridade
+        <select id="prioridade">
+          <option value="resultado" selected>Melhor cuidado / resultado</option>
+          <option value="rapido">Estou com pressa</option>
         </select>
       </label>
       <label>Quero sair com a roupa seca
@@ -76,6 +88,7 @@
       <div><span>Ciclo</span><strong id="rCiclo"></strong></div>
       <div><span>Temperatura</span><strong id="rTemp"></strong></div>
       <div><span>Centrifugação</span><strong id="rSpin"></strong></div>
+      <div><span>Carga</span><strong id="rCarga"></strong></div>
       <div><span>Secagem</span><strong id="rSecagem"></strong></div>
     </div>
     <h3>Produtos</h3>
@@ -181,7 +194,7 @@
 </section>
 </main>
 
-<footer class="shell">Versão 1.0 • guia doméstico de apoio • atualizado em setembro de 2026</footer>
+<footer class="shell">Versão 1.1 • guia doméstico de apoio • atualizado em setembro de 2026</footer>
 <script src="app.js"></script>
 </body>
 </html>
